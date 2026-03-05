@@ -1,13 +1,15 @@
-FROM node:20
+FROM node:20 AS build
 
 WORKDIR /app
-
 COPY . .
 
 RUN npm install -g pnpm
 RUN pnpm install
 RUN pnpm build
 
-EXPOSE 3000
 
-CMD ["node", ".output/server/index.mjs"]
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80

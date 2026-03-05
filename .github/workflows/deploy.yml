@@ -33,4 +33,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/vue3-realworld
             docker stop vue3-realworld || true
             docker rm vue3-realworld || true
-            docker run -d -p 8100:3000 --name vue3-realworld ${{ secrets.DOCKER_USERNAME }}/vue3-realworld
+            docker run -d -p 8100:80 --name vue3-realworld ${{ secrets.DOCKER_USERNAME }}/vue3-realworld
